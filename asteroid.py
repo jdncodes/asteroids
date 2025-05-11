@@ -14,9 +14,18 @@ class Asteroid(CircleShape):
 
     def split(self):
         self.kill()
+        points_earned = 0
+
         if self.radius <= ASTEROID_MIN_RADIUS:
-            return
+            #Add player score logic, smallest = 1 point
+            points_earned += 1
+            return points_earned
         
+        else:
+        #Add player score logic for other asteroids
+        points_earned += 10
+
+        #Continuation of random angles & new asteroid production
         random_angle = random.uniform(20,50)
 
         new_dir_a = self.velocity.rotate(random_angle)
@@ -36,6 +45,8 @@ class Asteroid(CircleShape):
         asteroid = Asteroid(self.position.x, self.position.y, new_smaller_radius)
         asteroid.velocity = new_dir_b * 1.2
         '''
+        #self.kill()
+        return points_earned
 
 
         
